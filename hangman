@@ -1,0 +1,35 @@
+def hangman(secretWord):
+  count = 8
+  lettersGuessed = ' '
+  list=[]
+  mistakesMade=[]
+  
+  print('Welcome to the game, Hangman!')
+  print('I am thinking of a word that is',len(name), 'letters long')
+      
+  while count >0:
+    print('-------------')
+    print('You have',count,'guesses left')
+    print('Available letters: ',getAvailableLetters(mistakesMade))
+    lettersGuessed = input('Please guess a letter:')
+    mistakesMade.append(lettersGuessed)
+    if lettersGuessed in list:
+      print("Oops! You've already guessed that letter:", getGuessedWord(secretWord, list))
+    else:
+      list.append(lettersGuessed)
+      if  lettersGuessed in secretWord :
+        print('Good guess: ',getGuessedWord(secretWord, list))
+        
+        if str('_') in str(getGuessedWord(secretWord, list)):
+          getGuessedWord(secretWord, list)
+        else :
+          print('-------------')
+          print('Congratulations, you won!')
+          break
+      else:
+        count -=1
+        print('Oops! That letter is not in my word:',getGuessedWord(secretWord, list))
+
+  if count == 0:
+    print('-------------')
+    print('Sorry, you ran out of guesses. The word was else.')
